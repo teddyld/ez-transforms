@@ -1,7 +1,9 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import signal
 from json import dumps
 from flask_cors import CORS
+
+from transformsFactory import constructTransform
 
 def quit_gracefully(*args):
     '''For coverage'''
@@ -19,16 +21,16 @@ def defaultHandler(err):
     return response
 
 app = Flask(__name__)
-CORS(app, origins="*")
+CORS(app)
 
 app.config['TRAP_HTTP_EXCEPTIONS'] = True
 app.register_error_handler(Exception, defaultHandler)
 
-@app.route('/api/data', methods=['GET'])
-def get_data():
-    data = {"message": "Hello from Flask!"}
-    return jsonify(data)
-
+@app.route('/transforms/generate', methods=['POST'])
+def transforms_generate():
+    jsonTransform = request.get_json()
+    return constructTransform(jsonTransform)
+    
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, quit_gracefully)  # For coverage
     app.run(debug=True, port=8080)  # Do not edit this port
