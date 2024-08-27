@@ -59,7 +59,7 @@ export default function OutputTransform({ outputs, setOutputs }: OutputProps) {
         if (output === "") {
           return (
             <Card
-              className="group relative flex min-h-24 min-w-24 items-center justify-center shadow-sm hover:border-1"
+              className="group relative flex min-h-24 min-w-24 items-center justify-center border-content shadow-sm hover:border-1"
               key={`card-${index}`}
             >
               <FaImage />
@@ -74,8 +74,11 @@ export default function OutputTransform({ outputs, setOutputs }: OutputProps) {
           );
         }
         return (
-          <Card className="group relative min-w-max" key={`card-${index}`}>
-            <div className="absolute right-2 top-2 z-20 hidden gap-2 shadow-sm group-hover:flex">
+          <Card
+            className="group relative min-w-max border-content hover:border-1"
+            key={`card-${index}`}
+          >
+            <div className="absolute right-2 top-2 z-20 hidden gap-2 group-hover:flex">
               <Button
                 isIconOnly
                 className="bg-background/75 text-lg"
