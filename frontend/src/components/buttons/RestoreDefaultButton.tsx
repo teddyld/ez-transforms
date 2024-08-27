@@ -2,13 +2,7 @@ import React from "react";
 import { Button } from "@nextui-org/react";
 import { GrPowerReset } from "react-icons/gr";
 import fileToDataUrl from "../../utils/fileToDataUrl";
-
-const defaultImages = [
-  "/src/assets/car_coco2014.jpg",
-  "/src/assets/food_coco2014.jpg",
-  "/src/assets/person_coco2014.jpg",
-  "/src/assets/cat_coco2014.jpg",
-];
+import { images } from "../../utils/images";
 
 type DefaultButtonProps = {
   currentDefault: string;
@@ -24,8 +18,8 @@ export default function RestoreDefaultButton({
   handleClearOutputs,
 }: DefaultButtonProps) {
   const handleRestoreDefaultImage = () => {
-    const currentIndex = defaultImages.indexOf(currentDefault);
-    const nextImage = defaultImages[currentIndex + 1] || defaultImages[0];
+    const currentIndex = images.indexOf(currentDefault);
+    const nextImage = images[currentIndex + 1] || images[0];
     setCurrentDefault(nextImage);
 
     fileToDataUrl(nextImage).then((dataUrl) => {

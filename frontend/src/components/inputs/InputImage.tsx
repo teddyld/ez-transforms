@@ -6,6 +6,7 @@ import { IoClose } from "react-icons/io5";
 import { toast } from "sonner";
 import RestoreDefaultButton from "../buttons/RestoreDefaultButton";
 import fileToDataUrl from "../../utils/fileToDataUrl";
+import { images } from "../../utils/images";
 
 type ImageProps = {
   image: string;
@@ -23,7 +24,7 @@ export default function InputImage({
     if (localStorage.getItem("image")) {
       setImage(localStorage.getItem("image") as string);
     } else if (localStorage.getItem("image") !== "") {
-      fileToDataUrl("/src/assets/car_coco2014.jpg").then((dataUrl) => {
+      fileToDataUrl(images[0]).then((dataUrl) => {
         setImage(dataUrl);
         localStorage.setItem("image", dataUrl);
       });
