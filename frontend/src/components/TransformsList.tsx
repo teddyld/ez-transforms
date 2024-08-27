@@ -1,5 +1,4 @@
-import React from "react";
-import { Transform, TransformProps, KeyProps } from "../utils/transforms";
+import { TransformProps, KeyProps } from "../utils/transforms";
 import { Accordion, AccordionItem, Button, Link } from "@nextui-org/react";
 import { FaLink } from "react-icons/fa";
 import { toast } from "sonner";
