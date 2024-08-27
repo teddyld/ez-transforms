@@ -1,20 +1,30 @@
-import axios from "axios";
-import React from "react";
+import "./axios";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Body from "./components/Body";
+import { Toaster } from "sonner";
+import { handleWindowBlurChangeTitle } from "./utils/handleWindowBlurChangeTitle";
 
 function App() {
-  const [message, setMessage] = React.useState("");
-  const fetchAPI = async () => {
-    const response = await axios.get("http://localhost:8080/api/data");
-    return response.data;
-  };
+  handleWindowBlurChangeTitle([
+    "Something need doing?",
+    "Work, work.",
+    "Ready to work.",
+  ]);
 
-  React.useEffect(() => {
-    fetchAPI().then((data) => {
-      setMessage(data.message);
-    });
-  }, []);
-
-  return <div>ez-transforms {message}</div>;
+  return (
+    <div className="relative flex min-h-screen w-full flex-col">
+      <Header />
+      <Body />
+      <Footer />
+      <Toaster
+        position="bottom-center"
+        richColors={true}
+        duration={5000}
+        closeButton={true}
+      />
+    </div>
+  );
 }
 
 export default App;
