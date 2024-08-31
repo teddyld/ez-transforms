@@ -7,7 +7,7 @@ import OutputTransform from "./OutputTransform";
 import { Button } from "@nextui-org/react";
 import { toast } from "sonner";
 
-import { Transform } from "../utils/transforms";
+import { Transform, transforms } from "../utils/transforms";
 
 export default function Body() {
   const [image, setImage] = React.useState("");
@@ -18,6 +18,26 @@ export default function Body() {
   const [selectedKeys, setSelectedKeys] = React.useState<Set<string>>(
     new Set([]),
   );
+
+  // Load transform properties from local storage
+  React.useEffect(() => {
+    if (!localStorage.getItem("transforms")) {
+      const transformRotate = transforms.find(
+        (transform) => transform.type === "Rotate",
+      );
+      setTransformProperties([transformRotate as Transform]);
+      setSelectedKeys(new Set(["Rotate"]));
+    } else {
+      const storedTransforms = JSON.parse(
+        localStorage.getItem("transforms") as string,
+      );
+      setTransformProperties(storedTransforms);
+      for (const transform of storedTransforms) {
+        setSelectedKeys((prev) => new Set([...prev, transform.type]));
+      }
+    }
+  }, []);
+
   const handleClearOutputs = () => {
     setOutputs(Array(outputs.length).fill(""));
   };

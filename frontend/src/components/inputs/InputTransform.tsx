@@ -44,21 +44,26 @@ export default function InputTransform({
 
     if (!transformEntry) return;
 
+    let newTransformProperties = null;
+
     // Deselect transform
     if (transformProperties?.includes(transformEntry as Transform)) {
-      const newTransformProperties = transformProperties?.filter(
+      newTransformProperties = transformProperties?.filter(
         (transform) => transform.type !== transformName,
       );
       setTransformProperties([...newTransformProperties]);
       toast.success(`"${transformName}" transform removed`);
     } else {
       // Select transform
-      setTransformProperties([
+      newTransformProperties = [
         ...(transformProperties || []),
         transformEntry as Transform,
-      ]);
+      ];
+      setTransformProperties([...newTransformProperties]);
       toast.success(`"${transformName}" transform added`);
     }
+
+    localStorage.setItem("transforms", JSON.stringify(newTransformProperties));
   };
 
   return (
@@ -104,9 +109,11 @@ export default function InputTransform({
             />
           </DropdownItem>
         </DropdownSection>
-        <DropdownSection title="Albumentations (1.4.6)" showDivider>
+        <DropdownSection title="Albumentations (1.4.6)">
           {filteredTransforms.map((transform) => (
-            <DropdownItem key={transform.type}>{transform.type}</DropdownItem>
+            <DropdownItem key={transform.type} textValue="~">
+              <span>{transform.type}</span>
+            </DropdownItem>
           ))}
         </DropdownSection>
       </DropdownMenu>

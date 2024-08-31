@@ -171,10 +171,9 @@ def constructTransform(jsonTransform):
                 interpolation = jsonTransform["interpolation"]
                 border_mode = jsonTransform["border_mode"]
                 value = jsonTransform["value"]
-                mask_value = jsonTransform["mask_value"]
                 rotate_method = jsonTransform["rotate_method"]
                 crop_border = jsonTransform["crop_border"]
-                tf = A.Rotate(limit=limit, interpolation=interpolation, border_mode=border_mode, value=value, mask_value=mask_value, rotate_method=rotate_method, crop_border=crop_border, p=p)
+                tf = A.Rotate(limit=limit, interpolation=interpolation, border_mode=border_mode, value=value, rotate_method=rotate_method, crop_border=crop_border, p=p)
             case "SafeRotate":
                 limit = jsonTransform["limit"]
                 interpolation = jsonTransform["interpolation"]

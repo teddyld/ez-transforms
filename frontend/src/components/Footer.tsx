@@ -7,10 +7,6 @@ export default function Footer() {
       text: "Albumentations Docs",
       href: "https://albumentations.ai/docs/api_reference/full_reference/",
     },
-    {
-      text: "Torchvision Transforms Docs",
-      href: "https://pytorch.org/vision/0.9/transforms.html",
-    },
   ];
   return (
     <>

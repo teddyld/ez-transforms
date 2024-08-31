@@ -24,7 +24,6 @@ export type Transform = ObjectKeys & {
   width?: number;
   interpolation?: 0 | 1 | 2 | 3 | 4;
   mask_interpolation?: 0 | 1 | 2 | 3 | 4;
-  mask_value?: number | number[] | null;
   scale?: number | [number, number] | null;
   translate_percent?: number | [number, number] | null;
   translate_px?: number | [number, number] | null;
@@ -270,7 +269,6 @@ export const transforms: Transform[] = [
     limit: [-90, 90],
     interpolation: 1,
     border_mode: 4,
-    mask_value: null,
     value: null,
     rotate_method: "largest_box",
     crop_border: false,
