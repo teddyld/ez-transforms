@@ -28,10 +28,13 @@ export default function InputTransform({
 
   // Filter transforms based on search query
   const filteredTransforms = React.useMemo(() => {
-    if (!searchQuery) return transforms;
-    return [...transforms].filter((transform) =>
-      transform.type.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
+    if (!searchQuery)
+      return transforms.sort((a, b) => a.type.localeCompare(b.type));
+    return [...transforms]
+      .sort((a, b) => a.type.localeCompare(b.type))
+      .filter((transform) =>
+        transform.type.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
   }, [searchQuery]);
 
   const handleAction = (transformName: string) => {
@@ -65,9 +68,10 @@ export default function InputTransform({
         base: "before:bg-default-200",
         content: "bg-gradient-to-br from-default-100 to-background",
       }}
+      className="h-96"
     >
       <DropdownTrigger>
-        <Button variant="faded" endContent={<FaChevronDown />}>
+        <Button variant="shadow" endContent={<FaChevronDown />}>
           Select transforms
         </Button>
       </DropdownTrigger>
@@ -79,6 +83,7 @@ export default function InputTransform({
         selectedKeys={selectedKeys}
         onSelectionChange={(keys) => setSelectedKeys(keys as Set<string>)}
         onAction={(e) => handleAction(e as string)}
+        className="h-96 overflow-y-scroll"
       >
         <DropdownSection title="Search" showDivider>
           <DropdownItem
@@ -99,7 +104,7 @@ export default function InputTransform({
             />
           </DropdownItem>
         </DropdownSection>
-        <DropdownSection title="Albumentations" showDivider>
+        <DropdownSection title="Albumentations (1.4.6)" showDivider>
           {filteredTransforms.map((transform) => (
             <DropdownItem key={transform.type}>{transform.type}</DropdownItem>
           ))}

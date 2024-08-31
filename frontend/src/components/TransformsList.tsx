@@ -2,6 +2,7 @@ import { TransformProps, KeyProps } from "../utils/transforms";
 import { Accordion, AccordionItem, Button, Link } from "@nextui-org/react";
 import { FaLink } from "react-icons/fa";
 import { toast } from "sonner";
+import InputCodeEditor from "./inputs/InputCodeEditor";
 
 export default function TransformsList({
   transformProperties,
@@ -52,18 +53,12 @@ export default function TransformsList({
             </Button>
           }
         >
-          <div className="flex justify-between pt-2">
-            <Button
-              color="danger"
-              variant="flat"
-              onClick={() => handleRemove(transform.type)}
-            >
-              Remove
-            </Button>
-            <Button color="success" variant="flat">
-              Apply
-            </Button>
-          </div>
+          <InputCodeEditor
+            transformProperties={transformProperties}
+            setTransformProperties={setTransformProperties}
+            transformType={transform.type}
+            handleRemove={handleRemove}
+          />
         </AccordionItem>
       ))}
     </Accordion>

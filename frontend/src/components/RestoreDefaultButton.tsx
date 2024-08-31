@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
 import { GrPowerReset } from "react-icons/gr";
-import fileToDataUrl from "../../utils/fileToDataUrl";
-import { images } from "../../utils/images";
+import fileToDataUrl from "../utils/fileToDataUrl";
+import { images } from "../utils/images";
 
 type DefaultButtonProps = {
   currentDefault: string;

@@ -22,9 +22,9 @@ export default function Body() {
     setOutputs(Array(outputs.length).fill(""));
   };
 
-  const handleApplyTransform = () => {
+  const handleGenerateTransform = () => {
     if (!transformProperties || transformProperties.length === 0) {
-      toast.warning("Please select a transform");
+      toast.warning("Please select at least one transform");
       return;
     } else if (!image) {
       toast.warning("Please upload an image");
@@ -42,7 +42,7 @@ export default function Body() {
           newOutputs[index] = response.data;
           setOutputs([...newOutputs]);
         } catch (err) {
-          break;
+          return;
         }
       }
     });
@@ -64,7 +64,7 @@ export default function Body() {
             selectedKeys={selectedKeys}
             setSelectedKeys={setSelectedKeys}
           />
-          <Button variant="ghost" onClick={handleApplyTransform}>
+          <Button variant="ghost" onClick={handleGenerateTransform}>
             Generate transform
           </Button>
         </div>

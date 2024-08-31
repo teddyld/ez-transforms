@@ -4,7 +4,7 @@ import { Card, CardBody, Image, Button } from "@nextui-org/react";
 import { FiUpload } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { toast } from "sonner";
-import RestoreDefaultButton from "../buttons/RestoreDefaultButton";
+import RestoreDefaultButton from "../RestoreDefaultButton";
 import fileToDataUrl from "../../utils/fileToDataUrl";
 import { images } from "../../utils/images";
 
@@ -61,7 +61,7 @@ export default function InputImage({
             className="rounded-none object-cover"
             src={`data:image/jpg;base64,${image}`}
           />
-          <div className="absolute right-2 z-10 hidden gap-2 overflow-hidden py-2 group-hover:flex">
+          <div className="absolute right-2 z-10 flex gap-2 overflow-hidden py-2 opacity-0 transition group-hover:opacity-100">
             <RestoreDefaultButton
               currentDefault={currentDefault}
               setCurrentDefault={setCurrentDefault}

@@ -4,8 +4,8 @@ import { IoMdDownload } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
 import { FaImage } from "react-icons/fa6";
-import { saveAs } from "file-saver";
 import { useHorizontalScroll } from "../utils/useHorizontalScroll";
+import base64Download from "../utils/base64Download";
 
 type OutputProps = {
   outputs: string[];
@@ -13,29 +13,6 @@ type OutputProps = {
 };
 
 export default function OutputTransform({ outputs, setOutputs }: OutputProps) {
-  function dataURLtoFile(dataurl: string, filename: string) {
-    const arr = dataurl.split(",");
-    const matchResult = arr[0].match(/:(.*?);/);
-
-    const mime = matchResult ? matchResult[1] : "";
-    if (mime === "") {
-      return;
-    }
-
-    const bstr = atob(arr[arr.length - 1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-  }
-
-  const handleBase64Download = (base64: string, filename: string) => {
-    const file = dataURLtoFile(base64, filename);
-    saveAs(file as Blob, filename);
-  };
-
   const handleRemoveOutput = (index: number) => {
     const newOutputs = [...outputs];
     newOutputs.splice(index, 1);
@@ -65,7 +42,7 @@ export default function OutputTransform({ outputs, setOutputs }: OutputProps) {
               <FaImage />
               <Button
                 isIconOnly
-                className="absolute right-2 top-2 hidden bg-background/75 text-lg group-hover:flex"
+                className="absolute right-2 top-2 flex bg-background/75 text-lg opacity-0 transition group-hover:opacity-100"
                 onClick={() => handleRemoveOutput(index)}
               >
                 <IoClose />
@@ -78,12 +55,12 @@ export default function OutputTransform({ outputs, setOutputs }: OutputProps) {
             className="group relative min-w-max border-content hover:border-1"
             key={`card-${index}`}
           >
-            <div className="absolute right-2 top-2 z-20 hidden gap-2 group-hover:flex">
+            <div className="absolute right-2 top-2 z-20 flex gap-2 opacity-0 transition group-hover:opacity-100">
               <Button
                 isIconOnly
                 className="bg-background/75 text-lg"
                 onClick={() =>
-                  handleBase64Download(
+                  base64Download(
                     `data:image/jpg;base64,${output}`,
                     `output_${index}.jpg`,
                   )
