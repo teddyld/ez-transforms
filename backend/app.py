@@ -33,4 +33,4 @@ def transforms_generate():
     
 if __name__ == "__main__":
     signal.signal(signal.SIGINT, quit_gracefully)  # For coverage
-    app.run(debug=True, port=8080)  # Do not edit this port
+    app.run(port=8080)  # Do not edit this port
