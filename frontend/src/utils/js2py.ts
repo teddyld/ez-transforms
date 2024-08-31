@@ -19,5 +19,10 @@ export function py2js(transformValue: string) {
   } else if (transformValue.startsWith('"')) {
     return transformValue.slice(1, -1);
   }
+
+  if (transformValue.includes("(") || transformValue.includes(")")) {
+    return JSON.parse(transformValue.replace(/\(/g, "[").replace(/\)/g, "]"));
+  }
+
   return JSON.parse(transformValue);
 }
