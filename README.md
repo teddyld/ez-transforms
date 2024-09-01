@@ -6,6 +6,26 @@ So I made my own webapp <a href="https://ez-transforms.vercel.app/" target="_bla
 
 ## Usage
 
+Since you can't package albumentations with Vercel you have to run the backend locally (and optionally, the frontend).
+
+1. Clone this repository
+   `git clone https://github.com/teddyld/ez-transforms.git`
+
+2. Install Python requirements
+   `pip install backend/requirements.txt`
+
+3. Run the Flask server locally
+   ```
+   cd backend
+   python3 app.py
+   ```
+4. (Optional) Run the frontend locally or open at https://ez-transforms.vercel.app/
+   ```
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
 Select a transform from the dropdown menu and upload an image (or use one of the images from the COCO2014 dataset). Modify the transformation parameters or add/remove additional transforms. Generate the transformed image(s) and download the results.
 
 ## Support
