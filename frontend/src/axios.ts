@@ -2,9 +2,9 @@ import axios from "axios";
 import { toast } from "sonner";
 
 const DEFAULT_ERROR_TEXT =
-  "Server failed to respond. Please read usage instructions at https://github.com/teddyld/ez-transforms";
+  "An error occurred while processing your request. Please try again later.";
 
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "http://54.252.245.234:8080";
 axios.defaults.headers.put["Content-Type"] = "application/json";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.delete["Content-Type"] = "application/json";
