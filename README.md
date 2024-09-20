@@ -1,5 +1,13 @@
 # ez-transforms
 
+## Tech Stack
+
+- React (TypeScript)
+- Tailwind, NextUI, Monaco Text Editor, Axios
+- Flask (Backend API)
+
+## About
+
 Improving the official <a href="https://huggingface.co/spaces/qubvel-hf/albumentations-demo" target="_blank">albumentations-demo</a>
 
 - Upload your image and select your transform(s) from the albumentations library
@@ -23,6 +31,12 @@ The backend service is hosted on AWS. I don't plan on maintaining a domain name 
    cd frontend
    npm install
    npm run dev
+   ```
+3. Optionally run the backend locally
+   ```
+   cd backend
+   pip install requirements.txt
+   python3 app.py
    ```
 
 ## Support
