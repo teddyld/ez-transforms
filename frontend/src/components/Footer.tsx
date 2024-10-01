@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <>
       <Divider className="bg-line" />
-      <footer className="relative z-50 flex h-16 items-center justify-center gap-8 px-4 text-content4-foreground">
+      <footer className="relative z-50 flex h-16 items-center justify-center gap-8 px-4">
         {footerLinks.map((item) => {
           return (
             <Link
