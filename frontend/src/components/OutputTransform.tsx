@@ -36,7 +36,7 @@ export default function OutputTransform({ outputs, setOutputs }: OutputProps) {
         if (output === "") {
           return (
             <Card
-              className="hover:border-conten group relative flex min-h-24 min-w-24 items-center justify-center border-1 border-transparent shadow-sm"
+              className="group relative flex min-h-24 min-w-24 items-center justify-center border-1 border-transparent shadow-sm hover:border-content"
               key={`card-${index}`}
             >
               <FaImage />
